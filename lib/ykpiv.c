@@ -405,7 +405,7 @@ ykpiv_rc ykpiv_connect(ykpiv_state *state, const char *wanted) {
       fprintf(stderr, "trying to connect to reader '%s'.\n", reader_ptr);
     }
     rc = SCardConnect(state->context, reader_ptr, SCARD_SHARE_SHARED,
-		      SCARD_PROTOCOL_T1, &card, &active_protocol);
+		      SCARD_PROTOCOL_T0 | SCARD_PROTOCOL_T1, &card, &active_protocol);
     if(rc != SCARD_S_SUCCESS)
     {
       if(state->verbose) {
@@ -453,7 +453,7 @@ static ykpiv_rc reconnect(ykpiv_state *state) {
     fprintf(stderr, "trying to reconnect to current reader.\n");
   }
   rc = SCardReconnect(state->card, SCARD_SHARE_SHARED,
-		      SCARD_PROTOCOL_T1, SCARD_RESET_CARD, &active_protocol);
+		      SCARD_PROTOCOL_T0 | SCARD_PROTOCOL_T1, SCARD_RESET_CARD, &active_protocol);
   if(rc != SCARD_S_SUCCESS) {
     if(state->verbose) {
       fprintf(stderr, "SCardReconnect failed, rc=%08lx\n", rc);
