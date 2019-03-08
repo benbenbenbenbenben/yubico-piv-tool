@@ -23,3 +23,10 @@ matrix:
     - compiler: gcc
       os: linux
       env: BUILD_OPENSSL_VERSION="1.1" EXTRA="libpcsclite-dev"
+deploy:
+  provider: releases
+  api_key: '$GITHUB_API_KEY'
+  file: **/*
+  skip_cleanup: true
+  draft: true
+  overwrite: true
