@@ -26,7 +26,7 @@ matrix:
 deploy:
   provider: releases
   api_key: '$GITHUB_API_KEY'
-  file: **/*
+  file: '**/*'
   skip_cleanup: true
   draft: true
   overwrite: true
